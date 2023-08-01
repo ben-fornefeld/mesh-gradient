@@ -65,13 +65,14 @@ void main()
     float frequency = uFrequency;
     float amplitude = uAmplitude;
     float speed = uTime * uSpeed;
+    
     tuv.x += sin(tuv.y*frequency+speed)/amplitude;
    	tuv.y += sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
     
     
     // draw the image
-    vec3 layer1 = mix(uColor1, uColor2, S(-.3, .2, (tuv*Rot(radians(-5.))).x));  
- 
+    vec3 layer1 = mix(uColor1, uColor2, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
+    
     vec3 layer2 = mix(uColor3, uColor4, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
     
     vec3 finalComp = mix(layer1, layer2, S(.5, -.3, tuv.y));
