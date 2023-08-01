@@ -1,0 +1,21 @@
+name: animated_mesh_gradient
+description: A new Flutter package project.
+version: 1.0.0
+homepage:
+
+environment:
+  sdk: ">=3.0.5 <4.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  shaders:
+    - shaders/mesh_gradient.frag
