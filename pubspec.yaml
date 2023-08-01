@@ -24,7 +24,7 @@ flutter:
 platforms:
   android:
   ios:
-  linux:
-  macos:
   web:
+  macos:
   windows:
+  linux:

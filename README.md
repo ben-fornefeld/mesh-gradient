@@ -17,17 +17,6 @@ Animated Mesh Gradient is an eye-catching widget that renders an animated mesh g
 
 Follow these steps to integrate the Animated Mesh Gradient into your Flutter project:
 
-### Installation
-
-Add the following line to your `pubspec.yaml` file:
-
-```yaml
-dependencies:
-  animated_mesh_gradient: ^1.0.0
-```
-
-Then, run `flutter pub get` to install the package.
-
 ### Usage
 
 Import the package in your Dart file:
