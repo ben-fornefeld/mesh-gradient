@@ -1,3 +1,7 @@
+## 1.0.1 (2023-08-01)
+
+Add supported platforms to pubspec.yaml
+
 ## 1.0.0 (2023-08-01)
 
 Initial Release
