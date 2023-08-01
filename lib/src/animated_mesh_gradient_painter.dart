@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:animated_mesh_gradient/models/animated_mesh_gradient_options.dart';
+import 'package:animated_mesh_gradient/src/animated_mesh_gradient_options.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedMeshGradientPainter extends CustomPainter {
