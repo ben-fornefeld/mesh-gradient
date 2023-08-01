@@ -20,3 +20,11 @@ dev_dependencies:
 flutter:
   shaders:
     - packages/animated_mesh_gradient/shaders/mesh_gradient.frag
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
