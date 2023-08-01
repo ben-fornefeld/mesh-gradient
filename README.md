@@ -4,7 +4,7 @@
 
 Animated Mesh Gradient is an eye-catching widget that renders an animated mesh gradient with a beautiful blurry effect between four user-defined colors. It can be used in Flutter applications to create stunning and dynamic user interfaces.
 
-![Demo](https://github.com/ben-fornefeld/animated_mesh_gradient/blob/52762443a630b79c4eeae87839b94127418854c9/demo/demo-iphone.gif)
+![Demo](https://github.com/ben-fornefeld/animated_mesh_gradient/blob/52762443a630b79c4eeae87839b94127418854c9/demo/demo-iphone.gif =250x)
 
 ## Features
 
