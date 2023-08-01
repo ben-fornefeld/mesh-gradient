@@ -1,3 +1,16 @@
-## 0.0.1
+## 1.0.0 (2023-08-01)
 
-* TODO: Describe initial release.
+Initial Release
+
+Animated Mesh Gradient is an eye-catching widget that renders an animated mesh gradient with a beautiful blurry effect between four user-defined colors. It allows developers to create stunning and dynamic user interfaces in Flutter applications.
+
+### Features
+
+- Fluid animation: The widget animates smoothly between the four specified colors, creating a visually appealing fluid effect.
+- Customizable options: Control the animation speed, frequency, and amplitude to achieve the desired visual effect.
+- Highly performant: Built with Flutter CustomPainter and FragmentShader, the widget ensures optimal performance and smooth animation even on lower-end devices.
+- Easy integration: Simply add the widget to your Flutter project and customize the colors and animation options to suit your application's design.
+
+For more details on usage and options, please refer to the README.md file.
+
+Enjoy using Animated Mesh Gradient in your projects! We welcome any feedback, bug reports, and contributions to make this package even better in the future.
