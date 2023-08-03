@@ -1,3 +1,7 @@
+## 1.1.2 (2023-08-03)
+
+Update README.md.
+
 ## 1.1.1 (2023-08-03)
 
 Add screenshots and demo to README.md & pubspec.yaml.
