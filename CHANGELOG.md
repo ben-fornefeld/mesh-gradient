@@ -1,3 +1,7 @@
+## 1.1.1 (2023-08-03)
+
+Add screenshots and demo to README.md & pubspec.yaml.
+
 ## 1.1.0 (2023-08-03)
 
 Added `seed` parameter to create static snapshots of the gradient animation to "freeze animation in tim".

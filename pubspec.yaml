@@ -1,6 +1,6 @@
 name: mesh_gradient
 description: A widget to create beatiful fluid-like mesh gradients in Flutter.
-version: 1.1.0
+version: 1.1.1
 repository: https://github.com/ben-fornefeld/mesh_gradient
 
 screenshots:
