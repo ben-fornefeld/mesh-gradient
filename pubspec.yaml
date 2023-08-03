@@ -1,6 +1,6 @@
 name: mesh_gradient
-description: Mesh Gradient is an eye-catching widget that renders an animated mesh gradient with a beautiful blurry effect between four user-defined colors. It can be used in Flutter applications to create stunning and dynamic user interfaces.
-version: 1.0.1
+description: A widget to create beatiful fluid-like mesh gradients in Flutter.
+version: 1.1.0
 repository: https://github.com/ben-fornefeld/animated_mesh_gradient
 
 screenshots:
