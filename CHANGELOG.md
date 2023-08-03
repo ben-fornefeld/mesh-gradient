@@ -1,6 +1,10 @@
+## 1.1.0 (2023-08-03)
+
+Added `seed` parameter to create static snapshots of the gradient animation to "freeze animation in tim".
+
 ## 1.0.1 (2023-08-01)
 
-Add supported platforms to pubspec.yaml
+Add supported platforms to pubspec.yaml.
 
 ## 1.0.0 (2023-08-01)
 

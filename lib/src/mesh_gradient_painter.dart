@@ -1,15 +1,18 @@
 import 'dart:ui';
 import 'package:mesh_gradient/src/mesh_gradient_point.dart';
 import 'package:flutter/material.dart';
+import 'package:mesh_gradient/src/mesh_gradient_options.dart';
 
 class MeshGradientPainter extends CustomPainter {
   MeshGradientPainter({
     required this.shader,
     required this.points,
+    required this.options,
   });
 
   final FragmentShader shader;
   final List<MeshGradientPoint> points;
+  final MeshGradientOptions options;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -17,16 +20,12 @@ class MeshGradientPainter extends CustomPainter {
     shader.setFloat(0, size.width);
     shader.setFloat(1, size.height);
 
-    //uNPoints
-    shader.setFloat(2, points.length.toDouble());
+    shader.setFloat(2, options.blend);
 
-    //uBlend
-    shader.setFloat(3, 3);
-
-    int j = 4;
+    int j = 3;
 
     //positions
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 4; i++) {
       Offset pos =
           i > (points.length - 1) ? const Offset(0, 0) : points[i].position;
 
@@ -37,7 +36,7 @@ class MeshGradientPainter extends CustomPainter {
     }
 
     //colors
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 4; i++) {
       Color color = i > (points.length - 1) ? Colors.black : points[i].color;
 
       shader.setFloat(j, color.red / 255);
