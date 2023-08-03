@@ -5,7 +5,7 @@ repository: https://github.com/ben-fornefeld/mesh_gradient
 
 screenshots:
   - description: "Animated Mesh Gradient"
-    path: demo/demo-animated.gif
+    path: example/demo/demo-animated.webp
 
 environment:
   sdk: ">=3.0.5 <4.0.0"
