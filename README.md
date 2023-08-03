@@ -4,6 +4,8 @@ A widget to create beatiful fluid-like mesh gradients in Flutter.
 
 [![Pub Version](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)](https://pub.dev/mesh_gradient)
 
+![AnimatedMeshGradient Demo](example/demo/demo-animated.gif)
+
 ## Features
 
 - `Fluid animation`: The widget animates smoothly between the four specified colors, creating a visually appealing fluid effect.
