@@ -40,6 +40,46 @@ AnimatedMeshGradient(
 )
 ```
 
+If you need to control the animation manually, you can use `AnimatedMeshGradientController` like this:
+
+```dart
+// Initialize the controller
+late final AnimatedMeshGradientController _controller = AnimatedMeshGradientController();
+
+...
+
+// Reference in the widget
+AnimatedMeshGradient(
+  colors: [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+  ],
+  options: AnimatedMeshGradientOptions(),
+  controller: _controller,
+)
+
+...
+
+// Use it to your needs
+void toggleAnimation() {
+  _controller.isAnimating.value ? _controller.stop() : _controller.start();
+}
+
+...
+
+// If you need to react to controller changes in your widget,
+// just wrap it with [ValueListenableBuilder]
+ValueListenableBuilder(
+  valueListenable: _controller.isAnimating,
+  builder: (context, value, child) {
+    return Text(value ? 'Dancing' : 'Chilling');
+  }
+)
+
+```
+
 ### Options
 
 The `AnimatedMeshGradient` allows you to customize its appearance and behavior with the following options:

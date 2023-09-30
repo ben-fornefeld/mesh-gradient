@@ -1,3 +1,7 @@
+## 1.1.5 (2023-10-01)
+
+Fix: Update README.md.
+
 ## 1.1.4 (2023-10-01)
 
 Feature: Added AnimatedMeshGradientController to control the animation manually.
