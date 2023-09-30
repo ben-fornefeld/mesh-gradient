@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
+import 'package:mesh_gradient/src/animated_mesh_gradient_controller.dart';
 import 'package:mesh_gradient/src/animated_mesh_gradient_options.dart';
 import 'package:mesh_gradient/src/animated_mesh_gradient_painter.dart';
 
@@ -10,6 +11,7 @@ class AnimatedMeshGradient extends StatefulWidget {
     required this.colors,
     required this.options,
     this.child,
+    this.controller,
     this.seed,
   });
 
@@ -23,6 +25,9 @@ class AnimatedMeshGradient extends StatefulWidget {
   /// This settings stops the animation. Try out different values until you like what you see.
   final double? seed;
 
+  /// Can be used to start / stop the animation manually. Will be ignored if [seed] is set.
+  final AnimatedMeshGradientController? controller;
+
   final Widget? child;
 
   @override
@@ -33,7 +38,12 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
   late double _time = widget.seed ?? 0;
 
   void _timeLoop() {
-    if (!mounted) return;
+    if (!mounted ||
+        (widget.controller != null
+            ? !widget.controller!.isAnimating.value
+            : false)) {
+      return;
+    }
 
     setState(() {
       _time += 16 / 1000;
@@ -56,7 +66,17 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
     }
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      _timeLoop();
+      if (widget.controller == null) {
+        _timeLoop();
+      }
+
+      if (widget.controller != null && widget.seed == null) {
+        widget.controller!.isAnimating.addListener(() {
+          if (widget.controller!.isAnimating.value) {
+            _timeLoop();
+          }
+        });
+      }
     });
   }
 

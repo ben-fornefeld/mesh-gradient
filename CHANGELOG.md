@@ -1,3 +1,7 @@
+## 1.1.4 (2023-10-01)
+
+Feature: Added AnimatedMeshGradientController to control the animation manually.
+
 ## 1.1.3 (2023-09-04)
 
 Update pubspec.yaml.
