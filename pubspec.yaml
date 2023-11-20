@@ -28,7 +28,6 @@ dev_dependencies:
 flutter:
   shaders:
     - packages/mesh_gradient/shaders/animated_mesh_gradient.frag
-    - packages/mesh_gradient/shaders/point_mesh_gradient.frag
 
 platforms:
   android:
