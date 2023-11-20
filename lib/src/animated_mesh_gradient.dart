@@ -35,6 +35,9 @@ class AnimatedMeshGradient extends StatefulWidget {
 }
 
 class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
+  static const String _shaderAssetPath =
+      'packages/mesh_gradient/shaders/animated_mesh_gradient.frag';
+
   late double _time = widget.seed ?? 0;
 
   void _timeLoop() {
@@ -54,6 +57,15 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
 
   @override
   void initState() {
+    Future(() async {
+      try {
+        await ShaderBuilder.precacheShader(_shaderAssetPath);
+      } catch (e) {
+        debugPrint('[AnimatedMeshGradient] [Exception] Precaching Shader: $e');
+        debugPrintStack(stackTrace: StackTrace.current);
+      }
+    });
+
     if (widget.colors.length != 4) {
       throw Exception(
           'Condition colors.length == 4 is not true. Assign exactly 4 colors.');
@@ -83,7 +95,7 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
   @override
   Widget build(BuildContext context) {
     return ShaderBuilder(
-      assetKey: 'packages/mesh_gradient/shaders/animated_mesh_gradient.frag',
+      assetKey: _shaderAssetPath,
       (context, shader, child) {
         return CustomPaint(
           painter: AnimatedMeshGradientPainter(

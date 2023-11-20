@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mesh_gradient/src/animated_mesh_gradient_options.dart';
 
 class AnimatedMeshGradientPainter extends CustomPainter {
-  AnimatedMeshGradientPainter({
+  const AnimatedMeshGradientPainter({
     required this.shader,
     required this.time,
     required this.colors,
