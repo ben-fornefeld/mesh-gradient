@@ -1,3 +1,7 @@
+## 1.1.6 (2023-11-20)
+
+Improvements: Precaching shader asset for ShaderBuilder + file clean up
+
 ## 1.1.5 (2023-10-01)
 
 Fix: Update README.md.
