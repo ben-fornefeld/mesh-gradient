@@ -1,3 +1,4 @@
+/// Options for the [AnimatedMeshGradient]
 class AnimatedMeshGradientOptions {
   AnimatedMeshGradientOptions({
     this.frequency = 5,

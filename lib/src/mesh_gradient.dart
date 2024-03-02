@@ -1,8 +1,11 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 import 'package:mesh_gradient/src/mesh_gradient_options.dart';
 import 'package:mesh_gradient/src/mesh_gradient_painter.dart';
 import 'package:mesh_gradient/src/mesh_gradient_point.dart';
+
+enum MeshGradientAnimation { dancer }
 
 class MeshGradient extends StatefulWidget {
   const MeshGradient({
@@ -21,15 +24,23 @@ class MeshGradient extends StatefulWidget {
 }
 
 class _MeshGradientState extends State<MeshGradient> {
+  static const String _shaderAssetPath =
+      'packages/mesh_gradient/shaders/point_mesh_gradient.frag';
+
   @override
   void initState() {
     super.initState();
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ShaderBuilder(
-      assetKey: 'packages/mesh_gradient/shaders/point_mesh_gradient.frag',
+      assetKey: _shaderAssetPath,
       (context, shader, child) {
         return CustomPaint(
           painter: MeshGradientPainter(

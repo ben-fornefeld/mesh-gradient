@@ -3,12 +3,20 @@ import 'package:mesh_gradient/src/mesh_gradient_point.dart';
 import 'package:flutter/material.dart';
 import 'package:mesh_gradient/src/mesh_gradient_options.dart';
 
+/// A custom painter that paints a mesh gradient
 class MeshGradientPainter extends CustomPainter {
   MeshGradientPainter({
     required this.shader,
     required this.points,
     required this.options,
-  });
+  }) {
+    assert(points.length <= 6);
+    assert(points.isNotEmpty);
+    assert(options.noiseIntensity >= 0);
+    assert(options.noiseIntensity <= 1);
+    assert(options.blend >= 0);
+    assert(options.blend <= 10);
+  }
 
   final FragmentShader shader;
   final List<MeshGradientPoint> points;
@@ -18,16 +26,24 @@ class MeshGradientPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     //uSize
     shader.setFloat(0, size.width);
+
+    //uHeight
     shader.setFloat(1, size.height);
 
+    //uBlend
     shader.setFloat(2, options.blend);
 
-    int j = 3;
+    //uNoiseIntensity
+    shader.setFloat(3, options.noiseIntensity);
 
-    //positions
-    for (int i = 0; i < 4; i++) {
-      Offset pos =
-          i > (points.length - 1) ? const Offset(0, 0) : points[i].position;
+    //uNumPoints
+    shader.setFloat(4, points.length.toDouble());
+
+    int j = 5;
+
+    //uPositions
+    for (int i = 0; i < 6; i++) {
+      Offset pos = i >= points.length ? const Offset(0, 0) : points[i].position;
 
       shader.setFloat(j, pos.dx);
       j++;
@@ -35,9 +51,9 @@ class MeshGradientPainter extends CustomPainter {
       j++;
     }
 
-    //colors
-    for (int i = 0; i < 4; i++) {
-      Color color = i > (points.length - 1) ? Colors.black : points[i].color;
+    //uColors
+    for (int i = 0; i < 6; i++) {
+      Color color = i >= points.length ? Colors.black : points[i].color;
 
       shader.setFloat(j, color.red / 255);
       j++;
@@ -55,5 +71,5 @@ class MeshGradientPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant MeshGradientPainter oldDelegate) =>
-      oldDelegate.points != points;
+      oldDelegate.points != points || oldDelegate.options != options;
 }

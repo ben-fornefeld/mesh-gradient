@@ -4,6 +4,7 @@ import 'package:mesh_gradient/src/animated_mesh_gradient_controller.dart';
 import 'package:mesh_gradient/src/animated_mesh_gradient_options.dart';
 import 'package:mesh_gradient/src/animated_mesh_gradient_painter.dart';
 
+/// A widget that paints an animated mesh gradient
 class AnimatedMeshGradient extends StatefulWidget {
   /// Creates a meshed gradient with provided colors and animates between them.
   const AnimatedMeshGradient({

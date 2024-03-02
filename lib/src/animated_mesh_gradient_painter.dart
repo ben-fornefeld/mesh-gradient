@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:mesh_gradient/src/animated_mesh_gradient_options.dart';
 
+/// A [CustomPainter] that paints an animated mesh gradient
 class AnimatedMeshGradientPainter extends CustomPainter {
   const AnimatedMeshGradientPainter({
     required this.shader,

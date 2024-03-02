@@ -8,7 +8,8 @@ A widget to create beautiful fluid-like mesh gradients in Flutter.
 
 ## Features
 
-- `Fluid animation`: The widget animates smoothly between the four specified colors, creating a visually appealing fluid effect.
+- `Controllable static Mesh Gradients`: Control the look of your Mesh Gradient with Colors and Positions.
+- `Fluid animation Mesh Gradients`: Widget animates smoothly between the four specified colors, creating a visually appealing fluid effect.
 - `Customizable options`: Control the animation speed, frequency, and amplitude to achieve the desired visual effect.
 - `Frozen mesh gradient`: Set a seed which gives back a static snapshot of the gradient animation.
 - `Highly performant`: Built with Flutter CustomPainter and FragmentShader, the widget ensures optimal performance and smooth animation even on lower-end devices.
@@ -16,7 +17,7 @@ A widget to create beautiful fluid-like mesh gradients in Flutter.
 
 ## Getting Started
 
-Follow these steps to integrate `Mesh Gradient` into your Flutter project:
+Follow these steps to integrate `Mesh Gradient's` into your Flutter projects:
 
 ### Usage
 
@@ -27,6 +28,8 @@ import 'package:mesh_gradient/mesh_gradient.dart';
 ```
 
 To use the widget, add it to your widget tree like this:
+
+### Animated Mesh Gradient
 
 ```dart
 AnimatedMeshGradient(
@@ -80,7 +83,25 @@ ValueListenableBuilder(
 
 ```
 
+### MeshGradient
+
+The `MeshGradient` widget allows you to create static mesh gradients with customizable points and options, which are blended together. Here's how you can use it in your project:
+
+```dart
+MeshGradient(
+  points: [
+    MeshGradientPoint(position: Offset(0.2, 0.3), color: Colors.red),
+    MeshGradientPoint(position: Offset(0.4, 0.5), color: Colors.blue),
+    MeshGradientPoint(position: Offset(0.6, 0.7), color: Colors.green),
+    MeshGradientPoint(position: Offset(0.8, 0.9), color: Colors.yellow),
+  ],
+  options: MeshGradientOptions(blend: 3, noiseIntensity: 0.5),
+)
+```
+
 ### Options
+
+## AnimatedMeshGradient
 
 The `AnimatedMeshGradient` allows you to customize its appearance and behavior with the following options:
 
@@ -89,6 +110,11 @@ The `AnimatedMeshGradient` allows you to customize its appearance and behavior w
 - `frequency`: The frequency of the fluid wave. Higher values create more ripples.
 - `amplitude`: The amplitude of the fluid wave. Higher values create more pronounced deformations.
 - `seed`: A seed value that gives back a static snapshot of the animation. This stops the animation.
+
+## MeshGradient
+
+- `blend`: Defines the blending strength between the colors. Default is 3.
+- `noiseIntensity`: Defines the intensity of the noise effect. Default is 0.5.
 
 Feel free to experiment with different values to achieve the perfect look for your application!
 
