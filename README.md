@@ -27,9 +27,9 @@ Import the package in your Dart file:
 import 'package:mesh_gradient/mesh_gradient.dart';
 ```
 
-To use the widget, add it to your widget tree like this:
-
 ### Animated Mesh Gradient
+
+To use an animated Mesh Gradient, add it to your widget tree like this:
 
 ```dart
 AnimatedMeshGradient(
