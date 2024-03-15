@@ -1,12 +1,14 @@
-<<<<<<< HEAD
+## 1.3.0 (2024-03-15)
+
+Feature: Added MeshGradientController to animate between MeshGradientPoints.
+
 ## 1.2.0 (2024-03-02)
 
 Feature: Added MeshGradient Widget.
-=======
+
 ## 1.1.6 (2023-11-20)
 
 Improvements: Precaching shader asset for ShaderBuilder + file clean up
->>>>>>> 951165a (improvements: cleaning folder structure)
 
 ## 1.1.5 (2023-10-01)
 
