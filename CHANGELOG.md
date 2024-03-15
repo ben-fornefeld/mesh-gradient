@@ -1,3 +1,7 @@
+## 1.3.1 (2024-03-15)
+
+Fix: IOS MeshGradient shader runtime error.
+
 ## 1.3.0 (2024-03-15)
 
 Feature: Added MeshGradientController to animate between MeshGradientPoints.
