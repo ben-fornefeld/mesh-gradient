@@ -1,3 +1,7 @@
+## 1.3.2 (2024-03-16)
+
+Improvements: Config / shader changes + added example app
+
 ## 1.3.1 (2024-03-15)
 
 Fix: IOS MeshGradient shader runtime error.
