@@ -22,6 +22,6 @@ class MeshGradientOptions {
   /// The intensity of the noise applied to the mesh gradient.
   ///
   /// This value affects the granularity of the noise texture on the gradient.
-  /// The default value is 0.2s.
+  /// The default value is 0.5.
   final double noiseIntensity;
 }

@@ -152,28 +152,23 @@ class MeshGradientController {
 
       sequenceAnimation.addListener(sequenceListener);
 
-      void sequenceStatusListener(AnimationStatus status) {
+      sequenceAnimation.addStatusListener((status) {
         if (status == AnimationStatus.completed ||
             status == AnimationStatus.dismissed) {
-          sequenceAnimation.removeListener(sequenceListener);
-          sequenceAnimation.removeStatusListener(sequenceStatusListener);
+          animationController.removeListener(sequenceListener);
+          animationController.dispose();
         }
-      }
-
-      sequenceAnimation.addStatusListener(sequenceStatusListener);
+      });
     }
 
     animationController.forward();
 
-    void animationStatusListener(AnimationStatus status) {
+    animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed ||
           status == AnimationStatus.dismissed) {
-        animationController.removeStatusListener(animationStatusListener);
         animationController.dispose();
       }
-    }
-
-    animationController.addStatusListener(animationStatusListener);
+    });
   }
 }
 

@@ -31,8 +31,8 @@ class MeshGradientPainter extends CustomPainter {
         options.noiseIntensity >= 0, 'Noise intensity cannot be less than 0.');
     assert(options.noiseIntensity <= 1, 'Noise intensity cannot exceed 1.');
     // Ensure the blend option is within the range [0, 10].
-    assert(0 < options.blend && options.blend <= 10,
-        'Blend value needs to be larger than 0 and smaller than 10.');
+    assert(options.blend >= 0, 'Blend value cannot be less than 0.');
+    assert(options.blend <= 10, 'Blend value cannot exceed 10.');
   }
 
   /// The fragment shader used to render the gradient.
@@ -59,17 +59,22 @@ class MeshGradientPainter extends CustomPainter {
     // If there are fewer than 6 points, the remaining positions are set to (0, 0).
     for (int i = 0; i < 6; i++) {
       Offset pos = i >= points.length ? const Offset(0, 0) : points[i].position;
-      shader.setFloat(j++, pos.dx);
-      shader.setFloat(j++, pos.dy);
+      shader.setFloat(j, pos.dx);
+      j++;
+      shader.setFloat(j, pos.dy);
+      j++;
     }
 
     // Set shader parameters for the colors of up to 6 points.
     // If there are fewer than 6 points, the remaining colors are set to black.
     for (int i = 0; i < 6; i++) {
       Color color = i >= points.length ? Colors.black : points[i].color;
-      shader.setFloat(j++, color.red / 255);
-      shader.setFloat(j++, color.green / 255);
-      shader.setFloat(j++, color.blue / 255);
+      shader.setFloat(j, color.red / 255);
+      j++;
+      shader.setFloat(j, color.green / 255);
+      j++;
+      shader.setFloat(j, color.blue / 255);
+      j++;
     }
 
     // Paint the rectangle covering the canvas with the gradient.
