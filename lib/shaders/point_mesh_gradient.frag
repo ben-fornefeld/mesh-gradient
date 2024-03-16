@@ -28,7 +28,39 @@ float noise(vec2 st) {
     return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
 }
 
+float complexNoise(vec2 st) {
+    // Create a more complex noise by combining multiple noise functions
+    float n1 = noise(st * 1.6);
+    float n2 = noise(st * 3.2);
+    float n3 = noise(st * 6.4);
+    float n4 = noise(st * 12.8);
+
+    // Combine the noises with different weights
+    float totalNoise = n1 * 0.5 + n2 * 0.25 + n3 * 0.125 + n4 * 0.0625;
+
+    // Normalize the result
+    return totalNoise / (0.5 + 0.25 + 0.125 + 0.0625);
+}
+
+// Normalize the point to the aspect ratio of the screen (not sure if this actually does anything -> needs improvement)
+vec2 normalizePoint(vec2 point) {
+    float aspectRatio = uSize.x / uSize.y;
+    vec2 normalizedPoint = point;
+    if (aspectRatio > 1.0) {
+        // Wider than tall, adjust x
+        normalizedPoint.x *= aspectRatio * 0.5;
+        normalizedPoint.y = (normalizedPoint.y - 0.5) + 0.5;
+    } else {
+        // Taller than wide, adjust y
+        float inverseAspectRatio = 1.0 / aspectRatio;
+        normalizedPoint.x = (normalizedPoint.x - 0.5) + 0.5;
+        normalizedPoint.y *= inverseAspectRatio * 0.5;
+    }
+    return normalizedPoint;
+}
+
 void processPoint(vec2 point, vec3 color, vec2 uv, float blend, inout vec3 sum, inout float valence) {
+    // point = normalizePoint(point);
     float distance = length(uv - point);
     if (distance == 0.0) { distance = 1.0; }
     float w = 1.0 / pow(distance, blend);
@@ -37,7 +69,6 @@ void processPoint(vec2 point, vec3 color, vec2 uv, float blend, inout vec3 sum, 
 }
 
 void main(void) {
-
     vec2 uv = FlutterFragCoord().xy / uSize;
     float blend = uBlend;
 
@@ -56,7 +87,7 @@ void main(void) {
         sum /= valence;
     }
 
-    float n = noise(uv * uSize * 0.1);
+    float n = complexNoise(uv * uSize * 0.1);
     sum = mix(sum, sum * n, (uNoiseIntensity * -1.0));
 
     sum = pow(sum, vec3(1.0/2.2));
