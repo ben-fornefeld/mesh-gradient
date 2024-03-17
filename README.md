@@ -151,7 +151,7 @@ _controller.animateSequence(
         curve: Curves.ease,
       ),
     ),
-  ]
+  ],
 );
 ```
 
