@@ -1,6 +1,6 @@
-import 'package:flutter/animation.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 
 /// Controls the animation of mesh gradient points.
@@ -11,6 +11,7 @@ import 'package:mesh_gradient/mesh_gradient.dart';
 class MeshGradientController {
   /// A [ValueNotifier] that notifies listeners of changes to the mesh gradient points.
   late ValueNotifier<List<MeshGradientPoint>> points;
+  late ValueNotifier<bool> isAnimating;
 
   /// The [TickerProvider] for the animation controller.
   final TickerProvider vsync;
@@ -39,7 +40,9 @@ class MeshGradientController {
     MeshGradientPoint newPoint, {
     Curve curve = Curves.ease,
     Duration duration = const Duration(milliseconds: 300),
-  }) {
+  }) async {
+    final completer = Completer();
+
     final List<MeshGradientPoint> currentPoints = points.value;
     if (pointIndex < 0 || pointIndex >= currentPoints.length) {
       throw ArgumentError('Index out of bounds');
@@ -89,8 +92,11 @@ class MeshGradientController {
           status == AnimationStatus.dismissed) {
         animationController.removeListener(listener);
         animationController.dispose();
+        completer.complete();
       }
     });
+
+    await completer.future;
   }
 
   /// Animates a sequence of points with specified durations and curves.
@@ -100,7 +106,9 @@ class MeshGradientController {
   void animateSequence({
     required Duration duration,
     required List<AnimationSequence> sequences,
-  }) {
+  }) async {
+    final completer = Completer();
+
     AnimationController animationController = AnimationController(
       duration: duration,
       vsync: vsync,
@@ -170,10 +178,13 @@ class MeshGradientController {
           status == AnimationStatus.dismissed) {
         animationController.removeStatusListener(animationStatusListener);
         animationController.dispose();
+        completer.complete();
       }
     }
 
     animationController.addStatusListener(animationStatusListener);
+
+    await completer.future;
   }
 }
 
