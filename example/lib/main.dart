@@ -87,8 +87,13 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
-                  onPressed: () {
-                    _controller.animateSequence(
+                  onPressed: () async {
+                    // MeshGradientController functions are async, so you can await them
+                    await _controller.animateSequence(
+                      onSequenceStart: (pointIndex) =>
+                          print('Started sequence with index: $pointIndex'),
+                      onSequenceEnd: (pointIndex) =>
+                          print('Ended sequence with index: $pointIndex'),
                       duration: const Duration(seconds: 4),
                       sequences: [
                         AnimationSequence(
