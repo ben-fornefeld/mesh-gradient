@@ -41,93 +41,15 @@ class MeshGradientController {
     Curve curve = Curves.ease,
     Duration duration = const Duration(milliseconds: 300),
   }) async {
-    final completer = Completer();
+    try {
+      final completer = Completer();
 
-    final List<MeshGradientPoint> currentPoints = points.value;
-    if (pointIndex < 0 || pointIndex >= currentPoints.length) {
-      throw ArgumentError('Index out of bounds');
-    }
-
-    final MeshGradientPoint startPoint = currentPoints[pointIndex];
-    final Tween<Offset> positionTween = Tween(
-      begin: startPoint.position,
-      end: newPoint.position,
-    );
-
-    final ColorTween colorTween = ColorTween(
-      begin: startPoint.color,
-      end: newPoint.color,
-    );
-
-    AnimationController animationController = AnimationController(
-      duration: duration,
-      vsync: vsync,
-    );
-
-    void listener() {
-      final Offset animatedPosition = positionTween.evaluate(
-        CurvedAnimation(parent: animationController, curve: curve),
-      );
-      final Color? animatedColor = colorTween.evaluate(
-        CurvedAnimation(parent: animationController, curve: curve),
-      );
-
-      MeshGradientPoint animatedPoint = MeshGradientPoint(
-        position: animatedPosition,
-        color: animatedColor ?? Colors.transparent,
-      );
-
-      List<MeshGradientPoint> updatedPoints = List.from(currentPoints);
-      updatedPoints[pointIndex] = animatedPoint;
-
-      points.value = updatedPoints;
-    }
-
-    animationController.addListener(listener);
-
-    animationController.forward();
-
-    animationController.addStatusListener((status) {
-      if (status == AnimationStatus.completed ||
-          status == AnimationStatus.dismissed) {
-        animationController.removeListener(listener);
-        animationController.dispose();
-        completer.complete();
-      }
-    });
-
-    await completer.future;
-  }
-
-  /// Animates a sequence of points with specified durations and curves.
-  ///
-  /// The method takes a [duration] for the entire sequence and a list of [sequences]
-  /// specifying the animation details for each point in the sequence.
-  void animateSequence({
-    required Duration duration,
-    required List<AnimationSequence> sequences,
-  }) async {
-    final completer = Completer();
-
-    AnimationController animationController = AnimationController(
-      duration: duration,
-      vsync: vsync,
-    );
-
-    final indexSet = <int>{};
-    for (var sequence in sequences) {
-      if (!indexSet.add(sequence.pointIndex)) {
-        throw ArgumentError(
-            'Duplicate sequence index detected: ${sequence.pointIndex}. Each sequence must have a unique point index.');
-      }
-      final int pointIndex = sequence.pointIndex;
-      final MeshGradientPoint newPoint = sequence.newPoint;
-
-      if (pointIndex < 0 || pointIndex >= points.value.length) {
+      final List<MeshGradientPoint> currentPoints = points.value;
+      if (pointIndex < 0 || pointIndex >= currentPoints.length) {
         throw ArgumentError('Index out of bounds');
       }
 
-      final MeshGradientPoint startPoint = points.value[pointIndex];
+      final MeshGradientPoint startPoint = currentPoints[pointIndex];
       final Tween<Offset> positionTween = Tween(
         begin: startPoint.position,
         end: newPoint.position,
@@ -138,53 +60,147 @@ class MeshGradientController {
         end: newPoint.color,
       );
 
-      final Animation<double> sequenceAnimation = CurvedAnimation(
-        parent: animationController,
-        curve: sequence.interval,
+      isAnimating.value = true;
+
+      AnimationController animationController = AnimationController(
+        duration: duration,
+        vsync: vsync,
       );
 
-      void sequenceListener() {
-        final Offset animatedPosition =
-            positionTween.evaluate(sequenceAnimation);
-        final Color? animatedColor = colorTween.evaluate(sequenceAnimation);
+      void listener() {
+        final Offset animatedPosition = positionTween.evaluate(
+          CurvedAnimation(parent: animationController, curve: curve),
+        );
+        final Color? animatedColor = colorTween.evaluate(
+          CurvedAnimation(parent: animationController, curve: curve),
+        );
+
         MeshGradientPoint animatedPoint = MeshGradientPoint(
           position: animatedPosition,
           color: animatedColor ?? Colors.transparent,
         );
 
-        List<MeshGradientPoint> updatedPoints = List.from(points.value);
+        List<MeshGradientPoint> updatedPoints = List.from(currentPoints);
         updatedPoints[pointIndex] = animatedPoint;
 
         points.value = updatedPoints;
       }
 
-      sequenceAnimation.addListener(sequenceListener);
+      animationController.addListener(listener);
 
-      void sequenceStatusListener(AnimationStatus status) {
+      animationController.forward();
+
+      animationController.addStatusListener((status) {
         if (status == AnimationStatus.completed ||
             status == AnimationStatus.dismissed) {
-          sequenceAnimation.removeListener(sequenceListener);
-          sequenceAnimation.removeStatusListener(sequenceStatusListener);
+          animationController.removeListener(listener);
+          animationController.dispose();
+          completer.complete();
+        }
+      });
+
+      await completer.future;
+    } catch (e) {
+      rethrow;
+    } finally {
+      isAnimating.value = false;
+    }
+  }
+
+  /// Animates a sequence of points with specified durations and curves.
+  ///
+  /// The method takes a [duration] for the entire sequence and a list of [sequences]
+  /// specifying the animation details for each point in the sequence.
+  void animateSequence({
+    required Duration duration,
+    required List<AnimationSequence> sequences,
+  }) async {
+    try {
+      final completer = Completer();
+
+      AnimationController animationController = AnimationController(
+        duration: duration,
+        vsync: vsync,
+      );
+
+      final indexSet = <int>{};
+      for (var sequence in sequences) {
+        if (!indexSet.add(sequence.pointIndex)) {
+          throw ArgumentError(
+              'Duplicate sequence index detected: ${sequence.pointIndex}. Each sequence must have a unique point index.');
+        }
+        final int pointIndex = sequence.pointIndex;
+        final MeshGradientPoint newPoint = sequence.newPoint;
+
+        if (pointIndex < 0 || pointIndex >= points.value.length) {
+          throw ArgumentError('Index out of bounds');
+        }
+
+        final MeshGradientPoint startPoint = points.value[pointIndex];
+        final Tween<Offset> positionTween = Tween(
+          begin: startPoint.position,
+          end: newPoint.position,
+        );
+
+        final ColorTween colorTween = ColorTween(
+          begin: startPoint.color,
+          end: newPoint.color,
+        );
+
+        isAnimating.value = true;
+
+        final Animation<double> sequenceAnimation = CurvedAnimation(
+          parent: animationController,
+          curve: sequence.interval,
+        );
+
+        void sequenceListener() {
+          final Offset animatedPosition =
+              positionTween.evaluate(sequenceAnimation);
+          final Color? animatedColor = colorTween.evaluate(sequenceAnimation);
+          MeshGradientPoint animatedPoint = MeshGradientPoint(
+            position: animatedPosition,
+            color: animatedColor ?? Colors.transparent,
+          );
+
+          List<MeshGradientPoint> updatedPoints = List.from(points.value);
+          updatedPoints[pointIndex] = animatedPoint;
+
+          points.value = updatedPoints;
+        }
+
+        sequenceAnimation.addListener(sequenceListener);
+
+        void sequenceStatusListener(AnimationStatus status) {
+          if (status == AnimationStatus.completed ||
+              status == AnimationStatus.dismissed) {
+            sequenceAnimation.removeListener(sequenceListener);
+            sequenceAnimation.removeStatusListener(sequenceStatusListener);
+          }
+        }
+
+        sequenceAnimation.addStatusListener(sequenceStatusListener);
+      }
+
+      animationController.forward();
+
+      void animationStatusListener(AnimationStatus status) {
+        if (status == AnimationStatus.completed ||
+            status == AnimationStatus.dismissed) {
+          animationController.removeStatusListener(animationStatusListener);
+          animationController.dispose();
+          completer.complete();
         }
       }
 
-      sequenceAnimation.addStatusListener(sequenceStatusListener);
+      animationController.addStatusListener(animationStatusListener);
+
+      await completer.future;
+    } catch (e) {
+      rethrow;
+    } finally {
+      isAnimating.value = false;
     }
-
-    animationController.forward();
-
-    void animationStatusListener(AnimationStatus status) {
-      if (status == AnimationStatus.completed ||
-          status == AnimationStatus.dismissed) {
-        animationController.removeStatusListener(animationStatusListener);
-        animationController.dispose();
-        completer.complete();
-      }
-    }
-
-    animationController.addStatusListener(animationStatusListener);
-
-    await completer.future;
   }
 }
 
