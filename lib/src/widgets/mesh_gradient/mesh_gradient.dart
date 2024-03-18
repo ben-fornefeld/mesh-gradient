@@ -82,6 +82,7 @@ class _MeshGradientState extends State<MeshGradient> {
             child: child,
             builder: (context, value, child) {
               return CustomPaint(
+                willChange: true,
                 painter: MeshGradientPainter(
                   shader: shader,
                   points: value,
