@@ -1,6 +1,6 @@
 ## 1.3.3 (2024-03-17)
 
-Feature: MeshGradientController isAnimating ValueNotifier + animateSequence callbacks + animation functions are now async
+Feature: MeshGradientController isAnimating ValueNotifier + animation functions are now async
 
 ## 1.3.2 (2024-03-16)
 
