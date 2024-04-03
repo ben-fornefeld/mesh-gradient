@@ -1,3 +1,7 @@
+## 1.3.4 (2024-04-04)
+
+Revert: animateSequence event callbacks
+
 ## 1.3.3 (2024-03-17)
 
 Feature: MeshGradientController isAnimating ValueNotifier + animation functions are now async
