@@ -114,29 +114,12 @@ class MeshGradientController {
   /// The method takes a [duration] for the entire sequence and a list of [sequences]
   /// specifying the animation details for each point in the sequence.
   ///
-  /// Callbacks for Animation Sequence Events:
-  ///
-  /// - `onSequenceStart`: This callback is invoked at the beginning of each point's animation within the sequence.
-  /// It provides an opportunity to perform any setup or initial actions for the animation of a specific point.
-  /// The callback receives the index of the point that is about to start animating.
-  ///
-  /// - `onSequenceEnd`: This callback is called once the animation for a specific point has completed.
-  /// It can be used to execute any cleanup or finalization tasks related to the point's animation.
-  /// The callback receives the index of the point that has just finished animating.
   Future<void> animateSequence({
     /// The total duration of the animation sequence.
     required Duration duration,
 
     /// A list of [AnimationSequence] objects, each defining an animation for a specific point.
     required List<AnimationSequence> sequences,
-
-    /// An optional callback function that is called at the start of each point's animation.
-    /// It provides the index of the point being animated.
-    Function(int pointIndex)? onSequenceStart,
-
-    /// An optional callback function that is called at the end of each point's animation.
-    /// It provides the index of the point that has finished animating.
-    Function(int pointIndex)? onSequenceEnd,
   }) async {
     try {
       final completer = Completer();
@@ -159,10 +142,6 @@ class MeshGradientController {
 
         if (pointIndex < 0 || pointIndex >= points.value.length) {
           throw ArgumentError('Index out of bounds');
-        }
-
-        if (onSequenceStart != null) {
-          onSequenceStart(pointIndex);
         }
 
         final MeshGradientPoint startPoint = points.value[pointIndex];
@@ -203,9 +182,6 @@ class MeshGradientController {
               status == AnimationStatus.dismissed) {
             sequenceAnimation.removeListener(sequenceListener);
             sequenceAnimation.removeStatusListener(sequenceStatusListener);
-            if (onSequenceEnd != null) {
-              onSequenceEnd(pointIndex);
-            }
           }
         }
 

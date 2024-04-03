@@ -90,10 +90,6 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
                   onPressed: () async {
                     // MeshGradientController functions are async, so you can await them
                     await _controller.animateSequence(
-                      onSequenceStart: (pointIndex) =>
-                          print('Started sequence with index: $pointIndex'),
-                      onSequenceEnd: (pointIndex) =>
-                          print('Ended sequence with index: $pointIndex'),
                       duration: const Duration(seconds: 4),
                       sequences: [
                         AnimationSequence(
