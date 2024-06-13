@@ -41,9 +41,10 @@ class AnimatedMeshGradientPainter extends CustomPainter {
     shader.setFloat(3, options.frequency);
     shader.setFloat(4, options.amplitude);
     shader.setFloat(5, options.speed);
+    shader.setFloat(6, options.grain);
 
     // Converts and sets the gradient colors to the shader.
-    int i = 6;
+    int i = 7;
     for (Color color in colors) {
       shader.setFloat(i, color.red / 255);
       i++;

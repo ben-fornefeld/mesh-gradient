@@ -8,6 +8,7 @@ uniform float uTime;
 uniform float uFrequency;
 uniform float uAmplitude;
 uniform float uSpeed;
+uniform float uGrain;
 
 uniform vec3 uColor1;
 uniform vec3 uColor2;
@@ -45,6 +46,13 @@ float noise( in vec2 p )
 	return 0.5 + 0.5*n;
 }
 
+float grainNoise(vec2 p)
+{
+    // Two typical hashes...
+	  return fract(sin(dot(p * -1., vec2(12.9898, 78.233))) * 43758.5453);
+
+}
+
 void main()
 {
     vec2 uv = FlutterFragCoord().xy/uSize;
@@ -58,7 +66,7 @@ void main()
 
     tuv.y *= 1./ratio;
     tuv *= Rot(radians((degree-.5)*720.+180.));
-	tuv.y *= ratio;
+	  tuv.y *= ratio;
 
     
     // Wave warp with sin
@@ -76,8 +84,10 @@ void main()
     vec3 layer2 = mix(uColor3, uColor4, S(-.3, .2, (tuv*Rot(radians(-5.))).x));
     
     vec3 finalComp = mix(layer1, layer2, S(.5, -.3, tuv.y));
-    
-    vec3 col = finalComp;
+
+    vec3 grainedComp = vec3(finalComp + (finalComp * grainNoise(uv) * uGrain));
+
+    vec3 col = grainedComp; 
     
     fragColor = vec4(col,1.0);
 }

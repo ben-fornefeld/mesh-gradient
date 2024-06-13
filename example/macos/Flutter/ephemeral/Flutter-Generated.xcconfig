@@ -2,10 +2,12 @@
 FLUTTER_ROOT=/Users/ben/Documents/dev/src/flutter
 FLUTTER_APPLICATION_PATH=/Users/ben/Documents/dev/misc/packages/mesh_gradient/example
 COCOAPODS_PARALLEL_CODE_SIGN=true
+FLUTTER_TARGET=/Users/ben/Documents/dev/misc/packages/mesh_gradient/example/lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
+DART_DEFINES=RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC9mNjM0NGI3NWRjZjg2MWQ4YmYxZjEzMjI3ODBiODgxMWY5ODJlMzFhLw==
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=.dart_tool/package_config.json
+PACKAGE_CONFIG=/Users/ben/Documents/dev/misc/packages/mesh_gradient/example/.dart_tool/package_config.json
