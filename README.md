@@ -240,6 +240,7 @@ ValueListenableBuilder(
 - `speed`: The animation speed, controlling how fast the fluid effect moves. A higher value means faster animation.
 - `frequency`: The frequency of the fluid wave. Higher values create more ripples.
 - `amplitude`: The amplitude of the fluid wave. Higher values create more pronounced deformations.
+- `grain`: Adds a grainy texture on the gradient. Values can range from 0 to 1.
 - `seed`: A seed value that gives back a static snapshot of the animation. This stops the animation.
 
 # Credits

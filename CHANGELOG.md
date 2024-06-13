@@ -1,3 +1,7 @@
+## 1.3.5 (2024-06-13)
+
+Feature: Added grain to AnimatedMeshGradientOptions
+
 ## 1.3.4 (2024-04-04)
 
 Revert: animateSequence event callbacks

@@ -34,8 +34,8 @@
 /Users/ben/.pub-cache/hosted/pub.dev/collection-1.18.0/lib/src/unmodifiable_wrappers.dart
 /Users/ben/.pub-cache/hosted/pub.dev/collection-1.18.0/lib/src/utils.dart
 /Users/ben/.pub-cache/hosted/pub.dev/collection-1.18.0/lib/src/wrappers.dart
-/Users/ben/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6/LICENSE
-/Users/ben/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6/assets/CupertinoIcons.ttf
+/Users/ben/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/LICENSE
+/Users/ben/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/assets/CupertinoIcons.ttf
 /Users/ben/.pub-cache/hosted/pub.dev/fake_async-1.3.1/LICENSE
 /Users/ben/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3/LICENSE
 /Users/ben/.pub-cache/hosted/pub.dev/flutter_shaders-0.1.2/LICENSE
@@ -147,7 +147,7 @@
 /Users/ben/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib/src/vector_math_64/vector4.dart
 /Users/ben/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib/vector_math.dart
 /Users/ben/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib/vector_math_64.dart
-/Users/ben/.pub-cache/hosted/pub.dev/vm_service-14.1.0/LICENSE
+/Users/ben/.pub-cache/hosted/pub.dev/vm_service-14.2.1/LICENSE
 /Users/ben/Documents/dev/misc/packages/mesh_gradient/LICENSE
 /Users/ben/Documents/dev/misc/packages/mesh_gradient/example/lib/main.dart
 /Users/ben/Documents/dev/misc/packages/mesh_gradient/example/pubspec.yaml
@@ -432,6 +432,7 @@
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/paginated_data_table.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/popup_menu.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/popup_menu_theme.dart
+/Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/predictive_back_page_transitions_builder.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/progress_indicator.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/progress_indicator_theme.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/material/radio.dart
@@ -621,6 +622,7 @@
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/mouse_tracking.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/platform_channel.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/platform_views.dart
+/Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/predictive_back_event.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/process_text.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/raw_keyboard.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/services/raw_keyboard_android.dart
@@ -794,6 +796,7 @@
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/widgets/visibility.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/widgets/widget_inspector.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/widgets/widget_span.dart
+/Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/widgets/widget_state.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/src/widgets/will_pop_scope.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter/lib/widgets.dart
 /Users/ben/Documents/dev/src/flutter/packages/flutter_tools/lib/src/build_system/targets/common.dart
