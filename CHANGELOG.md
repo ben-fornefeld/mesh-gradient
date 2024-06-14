@@ -1,3 +1,7 @@
+## 1.3.6 (2024-06-14)
+
+Improvements: AnimatedMeshGradient
+
 ## 1.3.5 (2024-06-13)
 
 Feature: Added grain to AnimatedMeshGradientOptions
