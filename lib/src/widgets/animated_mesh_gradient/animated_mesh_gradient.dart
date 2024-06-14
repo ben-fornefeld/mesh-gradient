@@ -110,6 +110,9 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
             _timeLoop();
           }
         });
+        if (widget.controller!.isAnimating.value) {
+          _timeLoop();
+        }
       }
     });
   }
