@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 import 'package:mesh_gradient/src/widgets/animated_mesh_gradient/animated_mesh_gradient_controller.dart';
 import 'package:mesh_gradient/src/widgets/animated_mesh_gradient/animated_mesh_gradient_options.dart';
@@ -52,15 +53,17 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
   static const String _shaderAssetPath =
       'packages/mesh_gradient/shaders/animated_mesh_gradient.frag';
 
+  late final Ticker? _ticker;
+
   /// The current time value used to control the animation phase.
-  late double _time = widget.seed ?? 0;
+  late double _delta = widget.seed ?? 0;
 
   /// Recursively updates the animation time and triggers a repaint.
   ///
   /// This method is called periodically and ensures the animation continues
   /// to run. It checks if the widget is still mounted and if the controller
   /// (if present) allows for the animation to proceed.
-  void _timeLoop() {
+  void _tickerCallback(Duration elapsed) {
     if (!mounted ||
         (widget.controller != null
             ? !widget.controller!.isAnimating.value
@@ -69,10 +72,8 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
     }
 
     setState(() {
-      _time += 16 / 1000;
+      _delta += 0.01;
     });
-
-    Future.delayed(const Duration(milliseconds: 16), () => _timeLoop());
   }
 
   @override
@@ -94,24 +95,43 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
           'Condition colors.length == 4 is not true. Assign exactly 4 colors.');
     }
 
-    // Initializes the animation based on the provided seed or controller.
+    // Initializes the animation based on the provided seed
     if (widget.seed != null) {
       return;
     }
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (widget.controller == null) {
-        _timeLoop();
+      // Define the ticker because we are certain it will be used next
+      _ticker = Ticker(_tickerCallback);
+
+      // Start the animation to account for isAnimating already being true at init
+      if (widget.controller == null || widget.controller!.isAnimating.value) {
+        _ticker!.start();
       }
 
-      if (widget.controller != null && widget.seed == null) {
-        widget.controller!.isAnimating.addListener(() {
-          if (widget.controller!.isAnimating.value) {
-            _timeLoop();
-          }
-        });
+      // Make sure there is no listener added when controller is null
+      if (widget.controller == null) {
+        return;
       }
+
+      // Register a listener callback for controller.isAnimating changes
+      widget.controller!.isAnimating.addListener(() {
+        if (widget.controller!.isAnimating.value && !_ticker!.isActive) {
+          _ticker!.start();
+          return;
+        }
+
+        if (!widget.controller!.isAnimating.value && _ticker!.isActive) {
+          _ticker!.stop();
+        }
+      });
     });
+  }
+
+  @override
+  void dispose() {
+    _ticker?.dispose();
+    super.dispose();
   }
 
   @override
@@ -123,7 +143,7 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
         return CustomPaint(
           painter: AnimatedMeshGradientPainter(
             shader: shader,
-            time: _time,
+            time: _delta,
             colors: widget.colors,
             options: widget.options,
           ),

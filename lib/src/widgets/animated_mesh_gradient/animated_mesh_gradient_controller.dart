@@ -28,4 +28,9 @@ class AnimatedMeshGradientController {
   void stop() {
     isAnimating.value = false;
   }
+
+  /// Disposes the controller and its resources.
+  void dispose() {
+    isAnimating.dispose();
+  }
 }

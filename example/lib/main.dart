@@ -20,6 +20,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
     _controller = MeshGradientController(
       points: [
         MeshGradientPoint(
