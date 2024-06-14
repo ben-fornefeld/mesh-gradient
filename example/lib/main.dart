@@ -16,10 +16,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   late final MeshGradientController _controller;
+  late final AnimatedMeshGradientController _aController;
 
   @override
   void initState() {
     super.initState();
+    _aController = AnimatedMeshGradientController();
+    _aController.isAnimating.value = true;
+
     _controller = MeshGradientController(
       points: [
         MeshGradientPoint(
@@ -58,6 +62,7 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   @override
   void dispose() {
     _controller.dispose();
+    _aController.dispose();
     super.dispose();
   }
 
@@ -73,13 +78,24 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
       home: Scaffold(
         body: Stack(
           children: [
-            Positioned.fill(
+            /* Positioned.fill(
               child: MeshGradient(
                 controller: _controller,
                 options: MeshGradientOptions(
                   blend: 3.5,
                   noiseIntensity: 0.5,
                 ),
+              ),
+            ), */
+            Positioned.fill(
+              child: AnimatedMeshGradient(
+                colors: const [
+                  Colors.red,
+                  Colors.purple,
+                  Colors.lime,
+                  Colors.lightBlue
+                ],
+                options: AnimatedMeshGradientOptions(grain: 0.4),
               ),
             ),
             Positioned.fill(
