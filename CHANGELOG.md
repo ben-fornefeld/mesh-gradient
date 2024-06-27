@@ -1,3 +1,7 @@
+## 1.3.7 (2024-06-27)
+
+Fix: AnimatedMeshGradient late Ticker bug
+
 ## 1.3.6 (2024-06-14)
 
 Improvements: AnimatedMeshGradient
