@@ -53,7 +53,7 @@ class _AnimatedMeshGradientState extends State<AnimatedMeshGradient> {
   static const String _shaderAssetPath =
       'packages/mesh_gradient/shaders/animated_mesh_gradient.frag';
 
-  late final Ticker? _ticker;
+  Ticker? _ticker;
 
   /// The current time value used to control the animation phase.
   late double _delta = widget.seed ?? 0;
