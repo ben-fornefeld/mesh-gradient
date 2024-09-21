@@ -32,6 +32,11 @@ class MeshGradientController {
     points.dispose();
   }
 
+ /// check if the controller is disposed or not
+  bool  isDisposed (){
+    return points.value.isEmpty;
+  } 
+
   /// Animates a single point to a new state.
   ///
   /// The [pointIndex] specifies the index of the point to animate, and [newPoint] specifies
