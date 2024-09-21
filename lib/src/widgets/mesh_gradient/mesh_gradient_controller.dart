@@ -18,7 +18,7 @@ class MeshGradientController {
 
   /// The [TickerProvider] for the animation controller.
   final TickerProvider vsync;
-  
+
   /// A list to keep track of all active animation controllers.
   final List<AnimationController> _activeAnimationControllers = [];
 
@@ -36,9 +36,12 @@ class MeshGradientController {
   /// This method stops all ongoing animations and disposes of all resources
   /// used by the controller.
   void dispose() {
-    stopAllAnimations();
-    points.dispose();
-    isAnimating.dispose();
+    if (points.value.isNotEmpty) {
+      stopAllAnimations();
+      points.dispose();
+      points.value.clear();
+      isAnimating.dispose();
+    }
   }
 
   /// Checks if the controller is disposed.
@@ -264,14 +267,14 @@ class MeshGradientController {
     Duration pauseBetweenRepeats = Duration.zero,
   }) async {
     int currentRepeat = 0;
-    
+
     while (repeatCount == 0 || currentRepeat < repeatCount) {
       await animation();
-      
+
       if (pauseBetweenRepeats > Duration.zero) {
         await Future.delayed(pauseBetweenRepeats);
       }
-      
+
       if (repeatCount > 0) {
         currentRepeat++;
       }
@@ -291,7 +294,8 @@ class MeshGradientController {
     Duration pauseBetweenRepeats = Duration.zero,
   }) async {
     await repeatAnimation(
-      animation: () => animatePoint(pointIndex, newPoint, curve: curve, duration: duration),
+      animation: () =>
+          animatePoint(pointIndex, newPoint, curve: curve, duration: duration),
       repeatCount: repeatCount,
       pauseBetweenRepeats: pauseBetweenRepeats,
     );
