@@ -47,6 +47,7 @@ class MeshGradientController {
       final completer = Completer();
 
       final List<MeshGradientPoint> currentPoints = points.value;
+
       if (pointIndex < 0 || pointIndex >= currentPoints.length) {
         throw ArgumentError('Index out of bounds');
       }
