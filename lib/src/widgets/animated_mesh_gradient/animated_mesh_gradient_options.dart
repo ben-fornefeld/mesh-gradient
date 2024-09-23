@@ -18,7 +18,7 @@ class AnimatedMeshGradientOptions {
     this.speed = 2,
     this.grain = 0,
   })  : assert(grain >= 0 && grain <= 1),
-        assert(speed >= 1 && speed <= 15);
+        assert(speed >= 0.01 && speed <= 15);
 
   /// The frequency of the gradient's oscillations.
   ///
