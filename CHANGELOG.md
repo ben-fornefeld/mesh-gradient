@@ -1,3 +1,7 @@
+## 1.3.8 (2024-09-23)
+
+Improvements: AnimatedMeshGradientOptions can now be slower, enhanced lib/example, package now exports painters 
+
 ## 1.3.7 (2024-06-27)
 
 Fix: AnimatedMeshGradient late Ticker bug
