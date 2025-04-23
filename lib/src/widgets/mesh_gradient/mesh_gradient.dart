@@ -61,10 +61,6 @@ class _MeshGradientState extends State<MeshGradient> {
 
   @override
   void dispose() {
-    // Dispose of the controller if it exists to clean up resources.
-    if (widget.controller != null) {
-      widget.controller!.dispose();
-    }
     super.dispose();
   }
 
