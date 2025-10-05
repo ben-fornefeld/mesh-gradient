@@ -1,3 +1,10 @@
+/// Mesh Gradient
+///
+/// Flutter widgets and painters for creating static and animated mesh gradients.
+///
+/// This library exports the public API of the `mesh_gradient` package, including
+/// the `MeshGradient` and `AnimatedMeshGradient` widgets and their supporting
+/// controllers, options, and painters.
 library mesh_gradient;
 
 /// Animated Mesh Gradient
