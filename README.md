@@ -4,7 +4,7 @@ Widgets which create beautiful fluid-like mesh gradients in Flutter.
 
 [![Pub Version](https://img.shields.io/pub/v/mesh_gradient)](https://pub.dev/packages/mesh_gradient) ![Pub Likes](https://img.shields.io/pub/likes/mesh_gradient) [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/ben-fornefeld/mesh_gradient)](https://github.com/ben-fornefeld/mesh_gradient)
 
-<img src="https://github.com/ben-fornefeld/mesh_gradient/raw/main/example/demo/demo-animated.gif" />
+<img src="https://github.com/ben-fornefeld/mesh_gradient/raw/main/screenshots/demo-animated.gif" />
 
 ## Widgets
 

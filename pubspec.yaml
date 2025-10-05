@@ -5,7 +5,7 @@ repository: https://github.com/ben-fornefeld/mesh_gradient
 
 screenshots:
   - description: "Animated Mesh Gradient"
-    path: screenshots/demo-screenshot.png
+    path: screenshots/demo-animated.webp
 
 topics:
   - flutter

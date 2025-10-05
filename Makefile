@@ -8,6 +8,8 @@ setup: ## install dependencies and tools
 	@flutter pub get
 	@echo "Activating Melos..."
 	@dart pub global activate melos
+	@echo "Activating Pana..."
+	@dart pub global activate pana
 	@echo "✓ Setup complete"
 
 test: ## run tests
@@ -46,9 +48,16 @@ release-major: ## quick major release
 	@bash -c 'NEW_VERSION=$$(grep "^version:" pubspec.yaml | sed "s/version: //"); echo "Version bumped to $$NEW_VERSION"'
 
 publish-dry: ## dry-run publish to pub.dev
-	@dart pub publish --dry-run
+	@flutter pub publish --dry-run
 
-ci: format-check analyze test ## run all CI checks locally
+pana: ## run pub.dev scoring analysis
+	@echo "Running pana (pub.dev scoring)..."
+	@dart pub global run pana --no-warning --exit-code-threshold 0
+
+pana-json: ## run pana with JSON output
+	@dart pub global run pana --json --no-warning
+
+ci: format-check analyze test pana ## run all CI checks locally
 
 watch: ## run tests in watch mode (requires entr)
 	@find lib test -name '*.dart' | entr -c flutter test
