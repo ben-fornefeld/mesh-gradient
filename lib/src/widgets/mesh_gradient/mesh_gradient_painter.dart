@@ -67,9 +67,9 @@ class MeshGradientPainter extends CustomPainter {
     // If there are fewer than 6 points, the remaining colors are set to black.
     for (int i = 0; i < 6; i++) {
       Color color = i >= points.length ? Colors.black : points[i].color;
-      shader.setFloat(j++, color.red / 255);
-      shader.setFloat(j++, color.green / 255);
-      shader.setFloat(j++, color.blue / 255);
+      shader.setFloat(j++, color.r);
+      shader.setFloat(j++, color.g);
+      shader.setFloat(j++, color.b);
     }
 
     // Paint the rectangle covering the canvas with the gradient.

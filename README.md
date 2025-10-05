@@ -249,6 +249,18 @@ ValueListenableBuilder(
 
 - [flutter_shaders](https://pub.dev/packages/flutter_shaders)
 
+# Development
+
+## Release Process
+
+This package uses automated releases via GitHub Actions. To release a new version:
+
+```bash
+bash release.sh
+```
+
+For more details, see [RELEASE.md](RELEASE.md).
+
 # Issues and Contributions
 
 If you encounter any issues or have suggestions for improvements, please feel free to [open an issue](https://github.com/ben-fornefeld/mesh_gradient/issues). Contributions are also welcome!

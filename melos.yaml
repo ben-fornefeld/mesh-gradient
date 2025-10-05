@@ -1,0 +1,19 @@
+name: mesh_gradient
+
+packages:
+  - .
+
+command:
+  version:
+    # generate commit links in changelog
+    linkToCommits: true
+    # use conventional commits for versioning
+    message: |
+      chore(release): publish {version}
+    # update changelog
+    updateGitTagRefs: true
+    releaseUrl: true
+
+  bootstrap:
+    runPubGetInParallel: false
+
