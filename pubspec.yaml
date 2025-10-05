@@ -5,14 +5,14 @@ repository: https://github.com/ben-fornefeld/mesh_gradient
 
 screenshots:
   - description: "Animated Mesh Gradient"
-    path: example/demo/demo-animated.webp
+    path: screenshots/demo-animated.webp
 
 topics:
   - flutter
   - gradient
   - mesh
   - animation
-  - ui
+  - user-interface
 
 environment:
   sdk: ">=3.0.5 <4.0.0"
@@ -27,6 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ">=2.0.0 <4.0.0"
+  melos: ^6.1.0
 
 flutter:
   shaders:

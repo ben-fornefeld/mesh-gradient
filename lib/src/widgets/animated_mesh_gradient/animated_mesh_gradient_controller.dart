@@ -5,6 +5,13 @@ import 'package:flutter/material.dart';
 /// This controller uses a [ValueNotifier] to manage the animation state, allowing
 /// widgets to react to changes in animation status.
 class AnimatedMeshGradientController {
+  /// Creates an [AnimatedMeshGradientController].
+  ///
+  /// The controller exposes [isAnimating] to toggle the animation on
+  /// an [AnimatedMeshGradient] widget. Call [start] and [stop] to control
+  /// the animation, and [dispose] when the controller is no longer needed.
+  AnimatedMeshGradientController();
+
   /// A [ValueNotifier] that tracks whether the animation is currently running.
   ///
   /// It notifies listeners when the animation starts or stops, enabling widgets
