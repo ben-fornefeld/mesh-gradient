@@ -22,6 +22,9 @@ class MeshGradientController {
   /// A list to keep track of all active animation controllers.
   final List<AnimationController> _activeAnimationControllers = [];
 
+  /// Tracks whether this controller has been disposed.
+  bool _isDisposed = false;
+
   /// Constructs a [MeshGradientController].
   ///
   /// Requires a list of [MeshGradientPoint]s to initialize the points and a [TickerProvider]
@@ -36,19 +39,19 @@ class MeshGradientController {
   /// This method stops all ongoing animations and disposes of all resources
   /// used by the controller.
   void dispose() {
-    if (points.value.isNotEmpty) {
-      stopAllAnimations();
-      points.dispose();
-      points.value.clear();
-      isAnimating.dispose();
-    }
+    if (_isDisposed) return;
+
+    stopAllAnimations();
+    points.dispose();
+    isAnimating.dispose();
+    _isDisposed = true;
   }
 
   /// Checks if the controller is disposed.
   ///
   /// Returns true if the controller has been disposed, false otherwise.
   bool isDisposed() {
-    return points.value.isEmpty;
+    return _isDisposed;
   }
 
   /// Stops all ongoing animations.
@@ -75,6 +78,10 @@ class MeshGradientController {
     Curve curve = Curves.ease,
     Duration duration = const Duration(milliseconds: 300),
   }) async {
+    if (_isDisposed) {
+      throw StateError('Cannot animate point on a disposed controller');
+    }
+
     try {
       final completer = Completer();
 
@@ -157,6 +164,10 @@ class MeshGradientController {
     int repeatCount = 1,
     Duration pauseBetweenRepeats = Duration.zero,
   }) async {
+    if (_isDisposed) {
+      throw StateError('Cannot animate sequence on a disposed controller');
+    }
+
     Future<void> singleSequenceAnimation() async {
       try {
         final completer = Completer();
