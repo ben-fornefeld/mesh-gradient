@@ -42,6 +42,6 @@ class AnimatedMeshGradientOptions {
   /// The grain effect of the gradient.
   ///
   /// This parameter overlays an acrylic-like grain effect over the gradient animation.
-  /// Allowed value range: [0, 1]
+  /// Allowed value range: "0..1".
   final double grain;
 }
