@@ -28,3 +28,11 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+
+# Example app specific
+example/android/local.properties
+example/ios/Flutter/ephemeral/
+example/macos/Flutter/ephemeral/
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+example/**/xcuserdata/

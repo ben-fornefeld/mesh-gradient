@@ -1,0 +1,35 @@
+name: PR Checks
+
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    checks:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: subosito/flutter-action@v2
+              with:
+                  channel: stable
+                  cache: true
+
+            - name: Install dependencies
+              run: flutter pub get
+
+            - name: Check formatting
+              run: dart format --set-exit-if-changed .
+
+            - name: Analyze code
+              run: flutter analyze --fatal-infos
+
+            - name: Run tests
+              run: flutter test --coverage
+
+            - name: Verify pub.dev scoring
+              run: |
+                  dart pub global activate pana
+                  dart pub global run pana --no-warning --exit-code-threshold 0
