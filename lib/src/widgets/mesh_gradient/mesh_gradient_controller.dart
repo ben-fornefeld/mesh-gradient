@@ -277,17 +277,22 @@ class MeshGradientController {
     int repeatCount = 0,
     Duration pauseBetweenRepeats = Duration.zero,
   }) async {
-    int currentRepeat = 0;
+    int repeatsLeft = repeatCount;
+    bool repeatIndefinitely = repeatCount == 0;
 
-    while (repeatCount == 0 || currentRepeat < repeatCount) {
+    while (repeatIndefinitely || repeatsLeft > 0) {
+      if (_isDisposed) {
+        return;
+      }
+
       await animation();
 
       if (pauseBetweenRepeats > Duration.zero) {
         await Future.delayed(pauseBetweenRepeats);
       }
 
-      if (repeatCount > 0) {
-        currentRepeat++;
+      if (!repeatIndefinitely) {
+        repeatsLeft--;
       }
     }
   }
